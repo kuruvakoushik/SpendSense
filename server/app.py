@@ -23,6 +23,7 @@ from server.routes.transactions import bp as transactions_bp
 from server.validators import ValidationError
 
 CLIENT_DIR = BASE_DIR / "client"
+PUBLIC_ASSETS_DIR = BASE_DIR / "public" / "assets"
 PROTECTED_PAGES = {
     "dashboard.html",
     "transactions.html",
@@ -39,8 +40,7 @@ csrf = CSRFProtect()
 def create_app(config_object=None) -> Flask:
     app = Flask(
         __name__,
-        static_folder=str(CLIENT_DIR / "assets"),
-        static_url_path="/assets",
+        static_folder=None,
     )
     app.config.from_object(config_object or Config)
     app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=7)
@@ -104,6 +104,12 @@ def create_app(config_object=None) -> Flask:
     def landing():
         return send_from_directory(CLIENT_DIR, "index.html")
 
+    @app.get("/assets/<path:asset_path>")
+    def static_assets(asset_path: str):
+        # The same files live in Vercel's public/assets CDN directory. This
+        # route serves them when running locally with Flask's dev server.
+        return send_from_directory(PUBLIC_ASSETS_DIR, asset_path)
+
     @app.get("/<page>")
     def html_page(page: str):
         filename = page if page.endswith(".html") else f"{page}.html"
@@ -117,3 +123,4 @@ def create_app(config_object=None) -> Flask:
         return send_from_directory(CLIENT_DIR, filename)
 
     return app
+
