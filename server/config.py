@@ -14,7 +14,10 @@ load_dotenv(BASE_DIR / ".env")
 class Config:
     """Default configuration for local development."""
 
-    IS_VERCEL = os.environ.get("VERCEL") == "1"
+    IS_VERCEL = (
+        os.environ.get("VERCEL") == "1"
+        or os.environ.get("VERCEL_ENV") in {"production", "preview", "development"}
+    )
     SECRET_KEY = os.environ.get("SECRET_KEY", "dev-only-insecure-secret-change-me")
     APP_ENV = os.environ.get("APP_ENV", "production" if IS_VERCEL else "development").strip().lower()
     DATABASE_PATH = os.environ.get(
