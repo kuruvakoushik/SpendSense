@@ -1,8 +1,14 @@
 # SpendSense — Personal Expense & Budget Assistant
 
-SpendSense is a complete local web application for tracking income and expenses, setting monthly category budgets, and reviewing spending with charts, a transparent month-end estimate, and rule-based unusual-expense notes.
+SpendSense is a personal finance web application for tracking income and expenses, setting monthly category budgets, and reviewing spending with charts, a transparent month-end estimate, and rule-based unusual-expense notes.
 
-Financial records are stored in a **local SQLite database**. The app does not use a cloud database, paid APIs, or external login providers.
+For local runs, financial records are stored in a **local SQLite database**. The app does not use paid APIs or external login providers.
+
+## Live demo
+
+The hosted SpendSense demo is available at [https://spend-sense-52hl.vercel.app/](https://spend-sense-52hl.vercel.app/).
+
+The Vercel demo currently uses temporary `/tmp` SQLite storage. Data may be lost or differ between serverless instances. Use the hosted site for demonstration only; do not enter real financial records. For persistent use, run locally with `instance/spendsense.db` or configure a durable database before deployment.
 
 ## Features
 
