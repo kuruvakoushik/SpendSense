@@ -104,13 +104,14 @@ beginner-friendly local development command.
 Static files are stored in `public/assets` so Vercel can serve them through its
 static asset CDN. Flask serves the same `/assets/...` paths during local runs.
 
-For Vercel, add `SECRET_KEY` as an environment variable (use a newly generated
-random value of at least 32 characters). Vercel is treated as production and
-uses secure session cookies. If `DATABASE_PATH` is not set, the app uses
-`/tmp/spendsense.db` so the function can start. Vercel's `/tmp` storage is
-ephemeral and can be isolated between function instances, so this is suitable
-only for a disposable demo. Do not store real financial records there; use a
-durable database before inviting real users.
+For Vercel, configure `SECRET_KEY` with a newly generated random value of at
+least 32 characters, `APP_ENV=production`, `DATABASE_PATH=/tmp/spendsense.db`,
+and `SESSION_COOKIE_SECURE=1`. Apply the variables to Production (and Preview
+when applicable). Redeploy after changing environment variables so the new
+deployment receives them. Vercel's `/tmp` storage is ephemeral and can be
+isolated between function instances, so it is suitable only for a disposable
+demo. Do not store real financial records there; use a durable database before
+inviting real users.
 
 ## Local URL
 
