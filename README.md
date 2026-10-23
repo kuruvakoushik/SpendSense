@@ -29,6 +29,7 @@ Financial records are stored in a **local SQLite database**. The app does not us
 
 ```
 spendsense/
+├── app.py                  # WSGI entrypoint for hosting platforms
 ├── run.py
 ├── requirements.txt
 ├── README.md
@@ -94,6 +95,10 @@ You do not need a separate init command. Starting the app creates `instance/spen
 ```powershell
 python run.py
 ```
+
+For hosting platforms that ask for a Flask application or WSGI entrypoint, use
+`app:app`. The root `app.py` exposes the Flask application; `run.py` remains the
+beginner-friendly local development command.
 
 ## Local URL
 
@@ -181,3 +186,4 @@ Confirm `.env` and `instance/*.db` are not staged.
 ## License
 
 Prepared for academic demonstration. Use and extend it for your own coursework.
+
