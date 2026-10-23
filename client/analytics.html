@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analytics · SpendSense</title>
+  <link rel="icon" href="/assets/images/logo.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/dashboard"><img src="/assets/images/logo.svg" alt=""><span class="brand-word">Spend<span>Sense</span></span></a>
+      <nav>
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+        <a class="nav-link" href="/transactions">Transactions</a>
+        <a class="nav-link" href="/categories">Categories</a>
+        <a class="nav-link" href="/budgets">Budgets</a>
+        <a class="nav-link" href="/analytics">Analytics</a>
+        <a class="nav-link" href="/insights">Insights</a>
+        <a class="nav-link" href="/profile">Profile</a>
+      </nav>
+      <div class="sidebar-foot"><div data-user-name></div><a href="#" data-logout>Log out</a></div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="btn btn-secondary menu-toggle" type="button" data-nav-toggle>Menu</button>
+        <h1 style="margin:0;font-size:1.2rem">Analytics</h1>
+      </header>
+      <main class="page">
+        <form class="filters" id="range-form">
+          <label>Start <input type="date" name="start" required></label>
+          <label>End <input type="date" name="end" required></label>
+          <button class="btn btn-secondary" type="submit">Update</button>
+        </form>
+        <section class="stat-grid">
+          <article class="stat-card"><span>Income</span><strong id="a-income">₹0.00</strong></article>
+          <article class="stat-card"><span>Expenses</span><strong id="a-expense">₹0.00</strong></article>
+          <article class="stat-card"><span>Net</span><strong id="a-net">₹0.00</strong></article>
+        </section>
+        <p id="a-empty" class="empty" hidden>No transactions in this date range.</p>
+        <section class="grid-2">
+          <article class="panel"><h2>Monthly trends</h2><div class="chart-box"><canvas id="trend-chart"></canvas></div></article>
+          <article class="panel"><h2>Category-wise expenses</h2><div class="chart-box"><canvas id="cat-chart"></canvas></div></article>
+        </section>
+        <section class="panel" style="margin-top:16px">
+          <h2>Daily spending</h2>
+          <div class="chart-box"><canvas id="daily-chart"></canvas></div>
+        </section>
+        <section class="panel" style="margin-top:16px">
+          <h2>Highest-spending categories</h2>
+          <div id="top-cats"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/analytics.js"></script>
+</body>
+</html>

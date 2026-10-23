@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile · SpendSense</title>
+  <link rel="icon" href="/assets/images/logo.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/dashboard"><img src="/assets/images/logo.svg" alt=""><span class="brand-word">Spend<span>Sense</span></span></a>
+      <nav>
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+        <a class="nav-link" href="/transactions">Transactions</a>
+        <a class="nav-link" href="/categories">Categories</a>
+        <a class="nav-link" href="/budgets">Budgets</a>
+        <a class="nav-link" href="/analytics">Analytics</a>
+        <a class="nav-link" href="/insights">Insights</a>
+        <a class="nav-link" href="/profile">Profile</a>
+      </nav>
+      <div class="sidebar-foot"><div data-user-name></div><a href="#" data-logout>Log out</a></div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="btn btn-secondary menu-toggle" type="button" data-nav-toggle>Menu</button>
+        <h1 style="margin:0;font-size:1.2rem">Profile</h1>
+        <a class="btn btn-secondary" href="#" data-logout>Log out</a>
+      </header>
+      <main class="page grid-2">
+        <article class="panel">
+          <h2>Account</h2>
+          <form id="profile-form" class="form-grid" style="grid-template-columns:1fr">
+            <label class="field">Full name <input name="full_name" required maxlength="80"></label>
+            <label class="field">Email <input name="email" type="email" readonly></label>
+            <label class="field">Currency <input name="currency" value="INR (₹)" readonly></label>
+            <button class="btn btn-primary" type="submit">Save name</button>
+          </form>
+        </article>
+        <article class="panel">
+          <h2>Change password</h2>
+          <form id="password-form" class="form-grid" style="grid-template-columns:1fr">
+            <label class="field">Current password <input name="current_password" type="password" required></label>
+            <label class="field">New password <input name="new_password" type="password" required minlength="8"></label>
+            <label class="field">Confirm new password <input name="confirm_password" type="password" required minlength="8"></label>
+            <button class="btn btn-primary" type="submit">Update password</button>
+          </form>
+        </article>
+      </main>
+    </div>
+  </div>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transactions · SpendSense</title>
+  <link rel="icon" href="/assets/images/logo.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/dashboard"><img src="/assets/images/logo.svg" alt=""><span class="brand-word">Spend<span>Sense</span></span></a>
+      <nav>
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+        <a class="nav-link" href="/transactions">Transactions</a>
+        <a class="nav-link" href="/categories">Categories</a>
+        <a class="nav-link" href="/budgets">Budgets</a>
+        <a class="nav-link" href="/analytics">Analytics</a>
+        <a class="nav-link" href="/insights">Insights</a>
+        <a class="nav-link" href="/profile">Profile</a>
+      </nav>
+      <div class="sidebar-foot"><div data-user-name></div><a href="#" data-logout>Log out</a></div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="btn btn-secondary menu-toggle" type="button" data-nav-toggle>Menu</button>
+        <h1 style="margin:0;font-size:1.2rem">Transactions</h1>
+        <button class="btn btn-primary" type="button" id="add-tx">Add transaction</button>
+      </header>
+      <main class="page">
+        <form class="filters" id="filter-form">
+          <select name="type">
+            <option value="">All types</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+          <select name="category_id" id="filter-category"><option value="">All categories</option></select>
+          <input type="date" name="start" aria-label="Start date">
+          <input type="date" name="end" aria-label="End date">
+          <input type="search" name="q" placeholder="Search description" maxlength="80">
+          <select name="sort">
+            <option value="date_desc">Newest date</option>
+            <option value="date_asc">Oldest date</option>
+            <option value="amount_desc">Highest amount</option>
+            <option value="amount_asc">Lowest amount</option>
+          </select>
+          <button class="btn btn-secondary" type="submit">Apply</button>
+        </form>
+        <p><strong id="filtered-total">₹0.00</strong> <span class="muted">total for the current filter</span></p>
+        <div class="panel table-wrap">
+          <table>
+            <thead><tr><th>Date</th><th>Type</th><th>Category</th><th>Description</th><th>Method</th><th>Amount</th><th></th></tr></thead>
+            <tbody id="tx-body"></tbody>
+          </table>
+          <div id="tx-empty" class="empty" hidden>No transactions match these filters.</div>
+        </div>
+        <div class="pager">
+          <button class="btn btn-secondary" type="button" id="prev-page">Previous</button>
+          <span id="page-label">Page 1</span>
+          <button class="btn btn-secondary" type="button" id="next-page">Next</button>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="modal" id="tx-modal" hidden>
+    <div class="modal-card">
+      <h2 id="tx-modal-title">Add transaction</h2>
+      <form id="tx-form" class="form-grid">
+        <input type="hidden" name="id">
+        <label class="field">Type
+          <select name="type" required>
+            <option value="expense">Expense</option>
+            <option value="income">Income</option>
+          </select>
+        </label>
+        <label class="field">Amount (₹)
+          <input name="amount" type="number" min="0.01" step="0.01" required>
+        </label>
+        <label class="field">Category
+          <select name="category_id" required></select>
+        </label>
+        <label class="field">Payment method
+          <select name="payment_method" required></select>
+        </label>
+        <label class="field">Date
+          <input name="transaction_date" type="date" required>
+        </label>
+        <label class="field">Description
+          <input name="description" maxlength="200">
+        </label>
+        <div class="field full" style="flex-direction:row;gap:8px">
+          <button class="btn btn-primary" type="submit">Save</button>
+          <button class="btn btn-secondary" type="button" data-close-modal="tx-modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal" id="delete-modal" hidden>
+    <div class="modal-card">
+      <h2>Delete transaction?</h2>
+      <p>This cannot be undone. Dashboard totals and budgets will recalculate immediately.</p>
+      <button class="btn btn-danger" type="button" id="confirm-delete">Delete</button>
+      <button class="btn btn-secondary" type="button" data-close-modal="delete-modal">Cancel</button>
+    </div>
+  </div>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/transactions.js"></script>
+</body>
+</html>

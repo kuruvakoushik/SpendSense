@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard · SpendSense</title>
+  <link rel="icon" href="/assets/images/logo.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/dashboard"><img src="/assets/images/logo.svg" alt=""><span class="brand-word">Spend<span>Sense</span></span></a>
+      <nav>
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+        <a class="nav-link" href="/transactions">Transactions</a>
+        <a class="nav-link" href="/categories">Categories</a>
+        <a class="nav-link" href="/budgets">Budgets</a>
+        <a class="nav-link" href="/analytics">Analytics</a>
+        <a class="nav-link" href="/insights">Insights</a>
+        <a class="nav-link" href="/profile">Profile</a>
+      </nav>
+      <div class="sidebar-foot">
+        <div data-user-name></div>
+        <div class="muted" data-user-email></div>
+        <a href="#" data-logout>Log out</a>
+      </div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="btn btn-secondary menu-toggle" type="button" data-nav-toggle>Menu</button>
+        <div>
+          <strong data-user-name></strong>
+          <div class="muted">Monthly overview</div>
+        </div>
+        <a class="btn btn-secondary" href="#" data-logout>Log out</a>
+      </header>
+      <main class="page">
+        <div class="page-head">
+          <div>
+            <h1>Dashboard</h1>
+            <p class="muted">Totals come from your SQLite records for the selected month.</p>
+          </div>
+          <div class="filters">
+            <label>Month <input type="month" id="month-picker"></label>
+            <button class="btn btn-primary" type="button" id="quick-add">Quick add</button>
+          </div>
+        </div>
+        <div id="empty-state" class="card empty" hidden>
+          <h2>No transactions yet</h2>
+          <p>Add your first income or expense, or load clearly labeled sample data to explore the dashboard.</p>
+          <button class="btn btn-secondary" type="button" id="load-demo">Add optional demo data</button>
+        </div>
+        <section class="stat-grid">
+          <article class="stat-card"><span>Income</span><strong id="stat-income">₹0.00</strong></article>
+          <article class="stat-card"><span>Expenses</span><strong id="stat-expense">₹0.00</strong></article>
+          <article class="stat-card"><span>Net balance</span><strong id="stat-net">₹0.00</strong></article>
+          <article class="stat-card"><span>Savings rate</span><strong id="stat-save">—</strong></article>
+        </section>
+        <section class="grid-2">
+          <article class="panel">
+            <h2>Income versus expenses</h2>
+            <div class="chart-box"><canvas id="trend-chart" aria-label="Monthly income versus expense chart"></canvas></div>
+          </article>
+          <article class="panel">
+            <h2>Expense breakdown</h2>
+            <div class="chart-box"><canvas id="cat-chart" aria-label="Expense breakdown by category"></canvas></div>
+          </article>
+        </section>
+        <section class="grid-2" style="margin-top:16px">
+          <article class="panel">
+            <h2>Recent transactions</h2>
+            <div class="table-wrap"><table><thead><tr><th>Date</th><th>Details</th><th>Amount</th></tr></thead><tbody id="recent-body"></tbody></table></div>
+            <p><a href="/transactions">View all transactions</a></p>
+          </article>
+          <article class="panel">
+            <h2>Budget utilization</h2>
+            <div id="budget-overview"></div>
+            <p><a href="/budgets">Manage budgets</a> · <a href="/analytics">Analytics</a> · <a href="/insights">Insights</a></p>
+          </article>
+        </section>
+      </main>
+    </div>
+  </div>
+  <div class="modal" id="tx-modal" hidden>
+    <div class="modal-card">
+      <h2>Add transaction</h2>
+      <form id="quick-form" class="form-grid">
+        <label class="field">Type
+          <select name="type" required>
+            <option value="expense">Expense</option>
+            <option value="income">Income</option>
+          </select>
+        </label>
+        <label class="field">Amount (₹)
+          <input name="amount" type="number" min="0.01" step="0.01" required>
+        </label>
+        <label class="field">Category
+          <select name="category_id" required></select>
+        </label>
+        <label class="field">Payment method
+          <select name="payment_method" required></select>
+        </label>
+        <label class="field">Date
+          <input name="transaction_date" type="date" required>
+        </label>
+        <label class="field">Description
+          <input name="description" maxlength="200">
+        </label>
+        <div class="field full" style="flex-direction:row;gap:8px">
+          <button class="btn btn-primary" type="submit">Save</button>
+          <button class="btn btn-secondary" type="button" data-close-modal="tx-modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Budgets · SpendSense</title>
+  <link rel="icon" href="/assets/images/logo.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/dashboard"><img src="/assets/images/logo.svg" alt=""><span class="brand-word">Spend<span>Sense</span></span></a>
+      <nav>
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+        <a class="nav-link" href="/transactions">Transactions</a>
+        <a class="nav-link" href="/categories">Categories</a>
+        <a class="nav-link" href="/budgets">Budgets</a>
+        <a class="nav-link" href="/analytics">Analytics</a>
+        <a class="nav-link" href="/insights">Insights</a>
+        <a class="nav-link" href="/profile">Profile</a>
+      </nav>
+      <div class="sidebar-foot"><div data-user-name></div><a href="#" data-logout>Log out</a></div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="btn btn-secondary menu-toggle" type="button" data-nav-toggle>Menu</button>
+        <h1 style="margin:0;font-size:1.2rem">Monthly budgets</h1>
+        <button class="btn btn-primary" type="button" id="add-budget">Add budget</button>
+      </header>
+      <main class="page">
+        <label>Month <input type="month" id="month-picker"></label>
+        <p class="muted">Spent amounts are calculated from real expense transactions in the selected month.</p>
+        <div id="budget-list" class="grid-2" style="margin-top:16px"></div>
+        <div id="budget-empty" class="card empty" hidden>No budgets for this month yet.</div>
+      </main>
+    </div>
+  </div>
+  <div class="modal" id="budget-modal" hidden>
+    <div class="modal-card">
+      <h2 id="budget-title">Add budget</h2>
+      <form id="budget-form" class="form-grid">
+        <input type="hidden" name="id">
+        <label class="field">Category <select name="category_id" required></select></label>
+        <label class="field">Monthly limit (₹) <input name="monthly_limit" type="number" min="0.01" step="0.01" required></label>
+        <div class="field full" style="flex-direction:row;gap:8px">
+          <button class="btn btn-primary" type="submit">Save</button>
+          <button class="btn btn-secondary" type="button" data-close-modal="budget-modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/budgets.js"></script>
+</body>
+</html>

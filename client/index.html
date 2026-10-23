@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpendSense — Personal Expense & Budget Assistant</title>
+  <link rel="icon" href="/assets/images/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="/"><img src="/assets/images/logo.svg" alt=""><span class="brand-word">Spend<span>Sense</span></span></a>
+      <nav>
+        <a href="/login">Sign in</a>
+        &nbsp;·&nbsp;
+        <a class="btn btn-primary" href="/register">Get started</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="container">
+    <section class="hero">
+      <div>
+        <p class="muted">Personal finance for students and early-career professionals</p>
+        <h1>See where the money goes, before the month gets away from you.</h1>
+        <p class="lede">SpendSense helps you record income and expenses, set monthly budgets, and understand spending patterns with clear charts and rule-based insights. Your data stays in a local SQLite database on the machine that runs the app.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/register">Get started</a>
+          <a class="btn btn-secondary" href="/login">Sign in</a>
+        </div>
+      </div>
+      <aside class="preview-card" aria-label="Illustrative dashboard preview">
+        <p class="muted">Sample preview — not live account data</p>
+        <div class="preview-grid">
+          <div class="mini"><span>Income</span><b>₹55,000.00</b></div>
+          <div class="mini"><span>Expenses</span><b>₹18,420.00</b></div>
+          <div class="mini"><span>Net</span><b>₹36,580.00</b></div>
+        </div>
+        <p><strong>Food</strong> 34% · <strong>Bills</strong> 22% · <strong>Transport</strong> 14%</p>
+        <p class="footnote">This illustration uses labeled sample figures so you can see the layout before creating an account.</p>
+      </aside>
+    </section>
+    <section class="feature-grid">
+      <article class="card">
+        <h3>Expense tracking</h3>
+        <p>Log income and expenses with categories, dates, and payment methods. Amounts are stored in paise so totals stay precise.</p>
+      </article>
+      <article class="card">
+        <h3>Monthly budgets</h3>
+        <p>Set category limits, watch utilization, and get warnings at 80% and 100% of the budget.</p>
+      </article>
+      <article class="card">
+        <h3>Analytics</h3>
+        <p>Review monthly trends, category breakdowns, and daily spending with Chart.js visuals backed by your records.</p>
+      </article>
+      <article class="card">
+        <h3>Spending insights</h3>
+        <p>Rule-based insights flag budget overruns, pace issues, and unusual expenses — without machine learning claims.</p>
+      </article>
+    </section>
+    <section class="privacy">
+      <h2>Privacy-first by design</h2>
+      <p>SpendSense does not use a cloud database. Financial records are stored in a local SQLite file (typically <code>instance/spendsense.db</code>) on the computer running Flask. There are no paid APIs, no external identity providers, and no silent demo transactions.</p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <strong>SpendSense</strong> · Personal Expense & Budget Assistant · Local SQLite · Flask
+      <p>Built for academic demonstration. Not a bank, not investment advice, and not a fraud-detection product.</p>
+    </div>
+  </footer>
+</body>
+</html>

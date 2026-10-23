@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Insights · SpendSense</title>
+  <link rel="icon" href="/assets/images/logo.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/dashboard"><img src="/assets/images/logo.svg" alt=""><span class="brand-word">Spend<span>Sense</span></span></a>
+      <nav>
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+        <a class="nav-link" href="/transactions">Transactions</a>
+        <a class="nav-link" href="/categories">Categories</a>
+        <a class="nav-link" href="/budgets">Budgets</a>
+        <a class="nav-link" href="/analytics">Analytics</a>
+        <a class="nav-link" href="/insights">Insights</a>
+        <a class="nav-link" href="/profile">Profile</a>
+      </nav>
+      <div class="sidebar-foot"><div data-user-name></div><a href="#" data-logout>Log out</a></div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="btn btn-secondary menu-toggle" type="button" data-nav-toggle>Menu</button>
+        <h1 style="margin:0;font-size:1.2rem">Insights</h1>
+        <label>Month <input type="month" id="month-picker"></label>
+      </header>
+      <main class="page">
+        <p class="muted">These notes are generated from your transactions and budgets using transparent rules. They are not machine learning.</p>
+        <section class="grid-2">
+          <article class="panel">
+            <h2>Spending notes</h2>
+            <div id="insight-list"></div>
+          </article>
+          <article class="panel">
+            <h2>Month-end estimate</h2>
+            <div id="forecast-box"></div>
+          </article>
+        </section>
+        <section class="panel" style="margin-top:16px">
+          <h2>Unusual expenses</h2>
+          <p class="footnote">A flagged payment is not necessarily fraudulent. It simply differs from typical amounts in that category.</p>
+          <div id="anomaly-list"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/insights.js"></script>
+</body>
+</html>

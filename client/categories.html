@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Categories · SpendSense</title>
+  <link rel="icon" href="/assets/images/logo.svg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/dashboard"><img src="/assets/images/logo.svg" alt=""><span class="brand-word">Spend<span>Sense</span></span></a>
+      <nav>
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+        <a class="nav-link" href="/transactions">Transactions</a>
+        <a class="nav-link" href="/categories">Categories</a>
+        <a class="nav-link" href="/budgets">Budgets</a>
+        <a class="nav-link" href="/analytics">Analytics</a>
+        <a class="nav-link" href="/insights">Insights</a>
+        <a class="nav-link" href="/profile">Profile</a>
+      </nav>
+      <div class="sidebar-foot"><div data-user-name></div><a href="#" data-logout>Log out</a></div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="btn btn-secondary menu-toggle" type="button" data-nav-toggle>Menu</button>
+        <h1 style="margin:0;font-size:1.2rem">Categories</h1>
+        <button class="btn btn-primary" type="button" id="add-cat">Add category</button>
+      </header>
+      <main class="page">
+        <p class="muted">Default categories are created with your account. Custom categories can be edited or deleted when they are unused.</p>
+        <div class="grid-2">
+          <article class="panel"><h2>Expense</h2><div id="expense-cats"></div></article>
+          <article class="panel"><h2>Income</h2><div id="income-cats"></div></article>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="modal" id="cat-modal" hidden>
+    <div class="modal-card">
+      <h2 id="cat-title">Add category</h2>
+      <form id="cat-form" class="form-grid">
+        <input type="hidden" name="id">
+        <label class="field">Name <input name="name" required maxlength="80"></label>
+        <label class="field">Type
+          <select name="type">
+            <option value="expense">Expense</option>
+            <option value="income">Income</option>
+          </select>
+        </label>
+        <label class="field">Color <input name="color" type="color" value="#0F766E"></label>
+        <label class="field">Icon
+          <select name="icon">
+            <option value="other">Other</option>
+            <option value="food">Food</option>
+            <option value="transport">Transport</option>
+            <option value="education">Education</option>
+            <option value="shopping">Shopping</option>
+            <option value="health">Health</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="bills">Bills</option>
+            <option value="housing">Housing</option>
+            <option value="travel">Travel</option>
+            <option value="salary">Salary</option>
+            <option value="freelance">Freelance</option>
+            <option value="wallet">Wallet</option>
+          </select>
+        </label>
+        <div class="field full" style="flex-direction:row;gap:8px">
+          <button class="btn btn-primary" type="submit">Save</button>
+          <button class="btn btn-secondary" type="button" data-close-modal="cat-modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/app.js"></script>
+  <script src="/assets/js/categories.js"></script>
+</body>
+</html>
