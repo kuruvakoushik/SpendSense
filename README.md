@@ -38,6 +38,7 @@ spendsense/
 ├── pytest.ini
 ├── server/
 ├── client/
+├── public/assets/           # Static assets served by Vercel and Flask locally
 ├── tests/
 └── instance/
 ```
@@ -99,6 +100,9 @@ python run.py
 For hosting platforms that ask for a Flask application or WSGI entrypoint, use
 `app:app`. The root `app.py` exposes the Flask application; `run.py` remains the
 beginner-friendly local development command.
+
+Static files are stored in `public/assets` so Vercel can serve them through its
+static asset CDN. Flask serves the same `/assets/...` paths during local runs.
 
 ## Local URL
 
